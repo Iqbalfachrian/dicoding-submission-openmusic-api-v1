@@ -31,7 +31,7 @@ class AlbumsHandler {
                     status: 'fail',
                     message: error.message,
                 });
-                response.code(error.statusCode);
+                response.code(error._statusCode);
                 return response
             }
 
@@ -40,7 +40,7 @@ class AlbumsHandler {
                 status: 'error',
                 message: 'Maaf, terjadi kegagalan pada server kami'
             });
-            response.code(404);
+            response.code(400);
             console.error(error);
             return response;
         }
@@ -62,7 +62,7 @@ class AlbumsHandler {
                     status: 'fail',
                     message: error.message,
                 });
-                response.code(error.statusCode);
+                response.code(error._statusCode);
                 return response;
             }
 
@@ -71,7 +71,7 @@ class AlbumsHandler {
                 status: 'error',
                 message: 'Maaf, terjadi kegagalan pada server kami'
             });
-            response.code(404);
+            response.code(200);
             console.error(error);
             return response;
         }
@@ -94,7 +94,7 @@ class AlbumsHandler {
                     status: 'fail',
                     message: error.message,
                 }, );
-                response.code(error.statusCode);
+                response.code(error._statusCode);
                 return response;
             }
 
@@ -124,7 +124,7 @@ class AlbumsHandler {
                         status: 'fail',
                         message: error.message,
                     });
-                    response.code(error.statusCode);
+                    response.code(error._statusCode);
                     return response;
                 }
 
