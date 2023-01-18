@@ -33,13 +33,13 @@ class AlbumsService {
             values: [id]
         };
         const querySong = {
-            text: 'SELECT songs.id, songs.title, songs.performer FROM songs INNER JOIN albums ON albums.id=songs."albumId" WHERE album.id=$1',
+            text: 'SELECT songs.id, songs.title, songs.performer FROM songs WHERE songs."albumId"=$1',
             values: [id]
         };
         const fetchAlbum = await this._pool.query(queryAlbum);
         const fetchSong = await this._pool.query(querySong);
 
-        if (!fetchAlbum.rows[0].length) {
+        if (!fetchAlbum.rows[0]) {
             throw new NotFoundError('Album tidak ditemukan');
         }
 
@@ -58,7 +58,7 @@ class AlbumsService {
         };
         const result = await this._pool.query(query);
 
-        if (!result.rows[0].length) {
+        if (!result.rows[0]) {
             throw new NotFoundError('Gagal memperbarui album, Id tidak ditemukan');
         }
     }
@@ -71,7 +71,7 @@ class AlbumsService {
 
         const result = await this._pool.query(query);
 
-        if (!result.rows.length) {
+        if (!result.rows[0]) {
             throw new NotFoundError('Gagal menghapus album, Id tidak ditemukan');
         }
     }
